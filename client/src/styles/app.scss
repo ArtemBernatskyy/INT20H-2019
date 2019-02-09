@@ -1,0 +1,14 @@
+@import './settings/variables';  // themes' colors
+
+//base...
+@import './generic/normalize.scss';
+@import './generic/box-sizing.scss';
+@import './generic/utils.scss';
+@import './base/scaffolding';
+@import './base/base';
+
+//components...
+// @import './component/alert';                  // components/Alert.js ('reactstrap')
+
+//pages...
+@import './containers/404';                     // pages/404 page
