@@ -216,11 +216,11 @@ CORS_ALLOW_METHODS = (
 )
 
 CORS_ORIGIN_WHITELIST = [
-    '167.99.34.28',
+    'shrt.life',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    '167.99.34.28',
+    'shrt.life',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
