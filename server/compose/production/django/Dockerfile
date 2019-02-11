@@ -16,6 +16,8 @@ RUN addgroup -S django \
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
+# fix https://github.com/pypa/pip/issues/6197#issuecomment-462014853
+RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /requirements/production.txt \
     && rm -rf /requirements
 
