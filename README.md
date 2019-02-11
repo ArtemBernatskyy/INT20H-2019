@@ -7,7 +7,7 @@ Pirates of Silicon Valley
 
 
 ### Project structure
-
+```
 ├── README.md
 ├── client              # SPA client app
 │   ├── build           # for production build, the same as /fe_build
@@ -36,7 +36,7 @@ Pirates of Silicon Valley
     │   ├── templates
     │   └── users
     └── setup.cfg
-
+```
 
 ### How to run
 - Plz follow instructions here  https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html
