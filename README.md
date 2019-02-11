@@ -1,4 +1,4 @@
-# Welcome to Pirates
+# Beware, Pirates !
 Pirates of Silicon Valley
 
 ### Basic diagram on how it works
