@@ -3,14 +3,14 @@ www.{$DOMAIN_NAME} {
 }
 
 {$DOMAIN_NAME} {
-    root /etc/static/index.html
-    #index index.html
-    #proxy /api/ django:5000 {
-    #    header_upstream Host {host}
-    #    header_upstream X-Real-IP {remote}
-    #    header_upstream X-Forwarded-Proto {scheme}
-    #    header_upstream X-CSRFToken {~csrftoken}
-    #}
+    root /etc/static
+    proxy /api/ django:5000 {
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+        header_upstream X-CSRFToken {~csrftoken}
+        except /etc/static
+    }
     log stdout
     errors stdout
     gzip
