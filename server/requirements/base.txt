@@ -5,6 +5,7 @@ argon2-cffi==19.1.0  # https://github.com/hynek/argon2_cffi
 redis>=2.10.6, < 3  # pyup: < 3 # https://github.com/antirez/redis
 celery==4.2.1  # pyup: < 5.0  # https://github.com/celery/celery
 flower==0.9.2  # https://github.com/mher/flower
+requests==2.21.0
 
 # Django
 # ------------------------------------------------------------------------------
@@ -18,3 +19,5 @@ django-redis==4.10.0  # https://github.com/niwinz/django-redis
 # Django REST Framework
 djangorestframework==3.9.1  # https://github.com/encode/django-rest-framework
 coreapi==2.3.3  # https://github.com/core-api/python-client
+flickr_api==0.7.3
+django-cors-headers==2.4.0

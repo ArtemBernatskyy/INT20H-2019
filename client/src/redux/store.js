@@ -4,7 +4,9 @@ import {
 import thunk from 'redux-thunk';
 
 import {
-  exampleReducer,
+  photosReducer,
+  errorsReducer,
+  emotionsReducer,
 } from 'redux/reducers';
 
 
@@ -16,7 +18,9 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
 const reducer = combineReducers({
-  example: exampleReducer,
+  errors: errorsReducer,
+  photos: photosReducer,
+  emotions: emotionsReducer,
 });
 
 

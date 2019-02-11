@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 
 import environ
+from celery.schedules import crontab
 
 ROOT_DIR = environ.Path(__file__) - 3  # (server/config/settings/base.py - 3 = server/)
 APPS_DIR = ROOT_DIR.path('server')
@@ -128,6 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -204,6 +206,25 @@ FIXTURE_DIRS = (
     str(APPS_DIR.path('fixtures')),
 )
 
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+
+CORS_ORIGIN_WHITELIST = [
+    '167.99.34.28',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    '167.99.34.28',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
 # SECURITY
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#session-cookie-httponly
@@ -253,6 +274,21 @@ CELERYD_TASK_TIME_LIMIT = 5 * 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-soft-time-limit
 # TODO: set to whatever value is adequate in your circumstances
 CELERYD_TASK_SOFT_TIME_LIMIT = 60
+CELERY_BEAT_SCHEDULE = {
+    'check_flickr': {
+        'task': 'server.core.tasks.check_flickr',
+        'schedule': 60.0,
+    },
+    'detect_emotions': {
+        'task': 'server.core.tasks.detect_emotions',
+        'schedule': 180.0,
+    },
+}
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
+}
 # django-allauth
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
@@ -268,5 +304,12 @@ ACCOUNT_ADAPTER = 'server.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'server.users.adapters.SocialAccountAdapter'
 
 
-# Your stuff...
-# ------------------------------------------------------------------------------
+# Parser settings
+FLICKR_API_KEY = env('FLICKR_API_KEY')
+FLICKR_API_SECRET = env('FLICKR_API_SECRET')
+FLICKR_PHOTOSET_ID = env('FLICKR_PHOTOSET_ID')
+FLICKR_PARSE_TAG = env('FLICKR_PARSE_TAG')
+# Face detection settings
+FACE_API_KEY = env('FACE_API_KEY')
+FACE_API_SECRET = env('FACE_API_SECRET')
+FACE_SURENESS_IN_EMOTION = 75  # in percent, max 100, min 0
