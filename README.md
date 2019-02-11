@@ -14,7 +14,7 @@ Pirates of Silicon Valley
 │   ├── build           # for production build, the same as /fe_build
 │   ├── src
 │   │   ├── App.jsx
-│   │   ├── components  # for reusabel components
+│   │   ├── components  # for reusable components
 │   │   ├── containers  # aka pages
 │   │   ├── index.jsx   # will be mounted via React
 │   │   ├── redux       # redux related
