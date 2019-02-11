@@ -1,0 +1,24 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Celery
+# ------------------------------------------------------------------------------
+
+# Flower
+CELERY_FLOWER_USER=BikthhSUSwVEWbzSaaRnmZQzXWgwZmfu
+CELERY_FLOWER_PASSWORD=Qyigpj3LqGpNHt4ZNYTyrOLgEIacOCKV5lAbGC1apGn18up2bTBO5v6EbeALMsbt
+
+CELERY_BROKER_URL=redis://redis:6379/0
+
+FLICKR_API_KEY=18916754432ce680c6fb605330bded96
+FLICKR_API_SECRET=b7f8579927c7ca75
+FLICKR_PHOTOSET_ID=72157674388093532
+FLICKR_PARSE_TAG=#int20h
+FACE_API_KEY=Hpxn9Rkrmo4vnoK6Xb2nT3aTU0kKBt-5
+FACE_API_SECRET=rTSBC_u7-hsdhfvB9xe6hFDW9r7re2U2
