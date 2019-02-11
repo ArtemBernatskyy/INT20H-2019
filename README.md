@@ -5,6 +5,7 @@ Pirates of Silicon Valley
 
 ![alt text](https://s3-eu-west-1.amazonaws.com/bernatskyys/img/Screen+Shot+2019-02-11+at+22.29.21.png)
 
+(in other words the data is always fresh (3-5 minutes old) and relevant)
 
 ### Project structure
 ```
