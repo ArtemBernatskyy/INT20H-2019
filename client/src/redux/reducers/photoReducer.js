@@ -33,12 +33,23 @@ export const photosReducer = (state = initialState.photos, action) => {
         loaded: true,
         ...action.payload,
       };
-    case GET_PHOTOS_SUCCESS:
+    case GET_PHOTOS_SUCCESS: {
+      if (action.payload.clean) {
+        return {
+          loading: false,
+          loaded: true,
+          ...action.payload,
+          clean: false,
+        };
+      }
+      const newPhotosObject = { ...action.payload };
+      newPhotosObject.results = state.results.concat(action.payload.results);
       return {
         loading: false,
         loaded: true,
-        ...action.payload,
+        ...newPhotosObject,
       };
+    }
     default:
       return state;
   }

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Row } from 'reactstrap';
 
 import Select from 'react-select';
+import Waypoint from 'react-waypoint';
+import qs from 'qs';
 
 import { getPhotos } from 'redux/actions/photoActions';
 import { getEmotions } from 'redux/actions/emotionActions';
@@ -12,14 +14,41 @@ import { resultsToOptions } from 'utils/misc';
 
 
 class MainPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedEmotions: [],
+    };
+  }
+
   componentDidMount() {
-    this.props.getPhotos();
     this.props.getEmotions();
+  }
+
+  getNextPhotos = () => {
+    const { photos, getPhotos } = this.props;
+    const { selectedEmotions } = this.state;
+    if (!photos.results.length) {
+      // initial loading of photos
+      getPhotos({
+        emotions: selectedEmotions && selectedEmotions.map(emotion => emotion.label).join(', '),
+      });
+    } else if (photos.next) {
+      // if waypoint is hit
+      getPhotos({
+        page: qs.parse(photos.next).page,
+        emotions: selectedEmotions && selectedEmotions.map(emotion => emotion.label).join(', '),
+      });
+    }
   }
 
   handleEmotionChange = async (emotions) => {
     // emotions have unique names so we can easily filter by name
-    await this.props.getPhotos({ emotions: emotions.map(emotion => emotion.label).join(', ') });
+    this.setState({ selectedEmotions: emotions });
+    await this.props.getPhotos(
+      { emotions: emotions.map(emotion => emotion.label).join(', ') },
+      true, // won't append to results
+    );
     return resultsToOptions(this.props.emotions.results, 'name') || [];
   }
 
@@ -57,6 +86,11 @@ class MainPage extends Component {
                   </div>
                 </div>
               ))}
+
+              <Waypoint
+                bottomOffset="-100px"
+                onEnter={this.getNextPhotos}
+              />
 
 
             </div>

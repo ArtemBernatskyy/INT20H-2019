@@ -13,7 +13,9 @@ export const getPhotos = (
   params = {
     search: null,
     emotions: null,
+    page: null,
   },
+  clean = false,
   seamless = false,
 ) => async (dispatch) => {
   dispatch({
@@ -27,7 +29,7 @@ export const getPhotos = (
     const response = await axios.get(`${fetchUrl}`, { params, withCredentials: true });
     dispatch({
       type: GET_PHOTOS_SUCCESS,
-      payload: response.data,
+      payload: { ...response.data, clean },
     });
   } catch (error) {
     handleErrors(error, dispatch);
